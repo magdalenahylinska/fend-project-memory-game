@@ -92,7 +92,7 @@ function moves() {
 
 //if all cards have matched, display a message with the final score
 function winner() {
-  if (pairsFound === 8) {
+  if (pairsFound === 1) {
 
     var modal = document.getElementById('win-popup');
     var span = document.getElementsByClassName("close")[0];
@@ -105,12 +105,19 @@ function winner() {
   }
 }
 
+function replay() {
+  $(".restart").on("click", function() {
+      location.reload();
+  });
+}
+
 
 
 
 //add each card's HTML to the page
 createCardsHtml();
 openPairs();
+replay();
 
 
 /*
