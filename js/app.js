@@ -42,6 +42,8 @@ function createCardsHtml() {
 //list of open cards
 let openCards = [];
 let movesCount = 0;
+let starsCount = 3;
+let pairsFound = 0;
 
 function openPairs() {
   // display the card's symbol
@@ -60,6 +62,8 @@ function openPairs() {
          openCards[1][0].classList.add("match");
          openCards = [];
          moves();
+         pairsFound++;
+         winner();
       }
       else {
         //if the cards do not match, remove the cards from the list and hide the card's symbol
@@ -78,16 +82,36 @@ function moves() {
   movesCount++;
   $("#moves").text(movesCount.toString());
   if (movesCount > 10 && movesCount <= 20) {
+    starsCount = 2;
     $("#star1").removeClass("fa-star");
   } else if (movesCount > 20) {
+    starsCount = 1;
     $("#star2").removeClass("fa-star");
 }
 }
+
+//if all cards have matched, display a message with the final score
+function winner() {
+  if (pairsFound === 8) {
+
+    var modal = document.getElementById('win-popup');
+    var span = document.getElementsByClassName("close")[0];
+
+    $("#moves-count").text(movesCount);
+    $("#stars-count").text(starsCount);
+
+    modal.style.display = "block";
+
+  }
+}
+
+
 
 
 //add each card's HTML to the page
 createCardsHtml();
 openPairs();
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
