@@ -119,6 +119,10 @@ function winner() {
 
     modal.style.display = "block";
     clearInterval(gameTime);
+
+    span.onclick = function() {
+       modal.style.display = "none";
+}
   }
 }
 
