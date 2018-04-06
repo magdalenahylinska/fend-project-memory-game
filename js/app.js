@@ -41,6 +41,7 @@ function createCardsHtml() {
 
 //list of open cards
 let openCards = [];
+let movesCount = 0;
 
 function openPairs() {
   // display the card's symbol
@@ -53,19 +54,34 @@ function openPairs() {
     openCards.push($(this));
     //if the list already has another card, check to see if the two cards match
     if (openCards.length > 1) {
+    //  if the cards do match, lock the cards in the open position
       if (openCards[0][0].classList[2] === openCards[1][0].classList[2]) {
          openCards[0][0].classList.add("match");
          openCards[1][0].classList.add("match");
          openCards = [];
+         moves();
       }
       else {
+        //if the cards do not match, remove the cards from the list and hide the card's symbol
             setTimeout(function () {
-  $(".card").removeClass("open show");
-   openCards = [];
-}, 1000);
+              $(".card").removeClass("open show");
+               openCards = [];
+               moves();
+            }, 1000);
       }
     }
   })
+}
+
+//increment the move counter and display it on the page
+function moves() {
+  movesCount++;
+  $("#moves").text(movesCount.toString());
+  if (movesCount > 10 && movesCount <= 20) {
+    $("#star1").removeClass("fa-star");
+  } else if (movesCount > 20) {
+    $("#star2").removeClass("fa-star");
+}
 }
 
 
