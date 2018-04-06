@@ -45,10 +45,29 @@ let openCards = [];
 function openPairs() {
   // display the card's symbol
   $(".card").on("click", function() {
+    //if card already open
+     if ($(this).hasClass("open show")) {
+        return; }
     $(this).toggleClass("open show");
+  //  add the card to a *list* of "open" cards
     openCards.push($(this));
+    //if the list already has another card, check to see if the two cards match
+    if (openCards.length > 1) {
+      if (openCards[0][0].classList[2] === openCards[1][0].classList[2]) {
+         openCards[0][0].classList.add("match");
+         openCards[1][0].classList.add("match");
+         openCards = [];
+      }
+      else {
+            setTimeout(function () {
+  $(".card").removeClass("open show");
+   openCards = [];
+}, 1000);
+      }
+    }
   })
 }
+
 
 //add each card's HTML to the page
 createCardsHtml();
