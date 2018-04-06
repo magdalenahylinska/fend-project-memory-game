@@ -37,8 +37,22 @@ function createCardsHtml() {
   })
 }
 
+
+
+//list of open cards
+let openCards = [];
+
+function openPairs() {
+  // display the card's symbol
+  $(".card").on("click", function() {
+    $(this).toggleClass("open show");
+    openCards.push($(this));
+  })
+}
+
 //add each card's HTML to the page
 createCardsHtml();
+openPairs();
 
 /*
  * set up the event listener for a card. If a card is clicked:
