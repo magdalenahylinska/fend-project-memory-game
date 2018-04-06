@@ -44,6 +44,23 @@ let openCards = [];
 let movesCount = 0;
 let starsCount = 3;
 let pairsFound = 0;
+let gameTime;
+
+function timerStart() {
+  let moves = 0;
+  //start timer on first card opening
+  $(".card").on("click", function() {
+    moves++;
+    if (moves === 1) {
+      var sec = 0;
+      function time(t) { return t > 9 ? t : "0" + t; }
+      gameTime = setInterval( function(){
+        $(".seconds").html(time(++sec % 60));
+        $(".minutes").html(time(parseInt(sec / 60, 10)));
+      }, 1000);
+    }
+  })
+}
 
 function openPairs() {
   // display the card's symbol
@@ -101,7 +118,7 @@ function winner() {
     $("#stars-count").text(starsCount);
 
     modal.style.display = "block";
-
+    clearInterval(gameTime);
   }
 }
 
@@ -112,11 +129,10 @@ function replay() {
 }
 
 
-
-
 //add each card's HTML to the page
 createCardsHtml();
 openPairs();
+timerStart();
 replay();
 
 
