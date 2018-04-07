@@ -137,3 +137,7 @@ h1 {
     animation-name: animatetop;
     animation-duration: 1.5s;
 }
+
+.popup-content h1 {
+  color: #aa7ecd;
+}
