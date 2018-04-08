@@ -58,6 +58,9 @@ function timerStart() {
   let moves = 0;
   //start timer on first card opening
   $(".card").on("click", function() {
+    if (openCards.length === 2){
+      return;
+    }
     moves++;
     if (moves === 1) {
       var sec = 0;
@@ -65,6 +68,7 @@ function timerStart() {
       gameTime = setInterval( function(){
         $(".seconds").html(time(++sec % 60));
         $(".minutes").html(time(parseInt(sec / 60, 10)));
+
       }, 1000);
     }
   })
@@ -73,6 +77,9 @@ function timerStart() {
 function openPairs() {
   // display the card's symbol
   $(".card").on("click", function() {
+    if (openCards.length === 2){
+      return;
+    }
     //if card already open
     if ($(this).hasClass("open show")) {
       return; }
