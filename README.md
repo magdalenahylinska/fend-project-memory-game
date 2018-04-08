@@ -10,3 +10,7 @@ Project is developed based on HTML and CSS provided by Udacity with my javascrip
 
 To play the game you need to match images in pairs. You win when all pairs are found.
 Games count your moves and time and gives you stars rate.
+
+#Dependencies
+
+Project based on HTML, CSS, Javascript using jQuery and Bootstrap Font Awsome
